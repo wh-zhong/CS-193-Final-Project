@@ -1,19 +1,19 @@
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Event {
-    private LocalDate start;
-    private LocalDate end;
+    private LocalDateTime start;
+    private LocalDateTime end;
 
-    public Event(LocalDate start, LocalDate end) {
+    public Event(LocalDateTime start, LocalDateTime end) {
         this.start = start;
         this.end = end;
     }
 
-    public LocalDate getStart() {
+    public LocalDateTime getStart() {
         return start;
     }
 
-    public LocalDate getEnd() {
+    public LocalDateTime getEnd() {
         return end;
     }
 }
