@@ -9,8 +9,6 @@ public class Schedule {
     private LocalTime startOfDay;
     private LocalTime endOfDay;
 
-    private int minutesBetweenTasks;
-
     private ArrayList<Event> events;
     private ArrayList<Task> tasks;
 
@@ -33,6 +31,14 @@ public class Schedule {
 
     public void addTask(Task task) {
         tasks.add(task);
+    }
+
+    public void setStartOfDay(LocalTime startOfDay) {
+        this.startOfDay = startOfDay;
+    }
+
+    public void setEndOfDay(LocalTime endOfDay) {
+        this.endOfDay = endOfDay;
     }
 
     public void calculateSchedule() {
