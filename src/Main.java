@@ -100,5 +100,62 @@ public class Main {
 
             schedule.addEvent(new Event(start, end));
         }
+        
+        int numTasks = -1;
+        while (numTasks == -1) {
+            try {
+                numTasks = Integer.parseInt(IO.readln("Please enter the number of tasks you would like to add: "));
+
+                if (numTasks < 0) {
+                    numTasks = -1; // Reset input to -1 to continue the loop
+                    IO.println("Invalid input. Please enter a non-negative number.");
+                }
+            } catch (NumberFormatException e) {
+                IO.println("Invalid input. Please enter a valid number.");
+                numTasks = -1; // Reset input to -1 to continue the loop
+            }
+        }
+
+        for (int i = 0; i < numTasks; i++) {
+            String durationInput = IO.readln("Enter the duration in minutes for task " + (i + 1) + ": ");
+            int duration = -1;
+            while (duration == -1) {
+                try {
+                    duration = Integer.parseInt(durationInput);
+
+                    if (duration <= 0) {
+                        duration = -1; // Reset input to -1 to continue the loop
+                        IO.println("Invalid input. Please enter a positive number.");
+                        durationInput = IO.readln("Enter the duration in minutes for task " + (i + 1) + ": ");
+                    }
+                } catch (NumberFormatException e) {
+                    IO.println("Invalid input. Please enter a valid number.");
+                    durationInput = IO.readln("Enter the duration in minutes for task " + (i + 1) + ": ");
+                }
+            }
+
+
+            int dayOfWeek = -1;
+            String day = IO.readln("Enter an integer representing the day of the week for event " + (i + 1) + " (0 = Monday, 6 = Sunday): ");
+            while (dayOfWeek == -1) {
+                try {
+                    dayOfWeek = Integer.parseInt(day);
+
+                    if (dayOfWeek < 0 || dayOfWeek > 6) {
+                        dayOfWeek = -1; // Reset input to -1 to continue the loop
+                        IO.println("Invalid input. Please enter an integer between 0 and 6.");
+                        day = IO.readln("Enter an integer representing the day of the week for event " + (i + 1) + " (0 = Monday, 6 = Sunday): ");
+                    }
+                } catch (NumberFormatException e) {
+                    IO.println("Invalid input. Please enter a valid integer.");
+                    day = IO.readln("Enter an integer representing the day of the week for event " + (i + 1) + " (0 = Monday, 6 = Sunday): ");
+                }
+            }
+
+            DayOfWeek dayOfWeekEnum = DayOfWeek.of(dayOfWeek + 1); // Convert to DayOfWeek enum (1 = Monday, 7 = Sunday)
+            LocalDate dueDate = LocalDate.now().with(TemporalAdjusters.nextOrSame(dayOfWeekEnum));
+
+            schedule.addTask(new Task(duration, dueDate));
+        }
     }
 }

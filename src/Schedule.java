@@ -54,7 +54,7 @@ public class Schedule {
                 int blockDuration = blocks[i];
                 for (int j = 0; j < tasks.size(); j++) {
                     Task task = tasks.get(j);
-                    if (task.getDueDate().getDayOfWeek().compareTo(day) <= 0 && task.getDurationMin() <= blockDuration) {
+                    if (task.getDueDate().getDayOfWeek().compareTo(day) < 0 && task.getDurationMin() <= blockDuration) {
                         // Schedule the task in this block
                         System.out.println("Scheduling task with duration " + task.getDurationMin() + " minutes on " + day);
                         // Remove the task from the list after scheduling
